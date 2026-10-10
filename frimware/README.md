@@ -50,6 +50,16 @@ feed the Serial JSON straight into the local ingestion script — simpler and
 avoids ThingSpeak's rate limits (15s between updates on the free tier) which
 would otherwise force you to slow down the whole fleet.
 
+## To create a ThingSpeak channel 
+Create following Fields in the channel
+```bash
+Field 1 : Temperature
+Field 2 : Voltage
+Field 3 : Vibration
+Field 4 : rssi
+Field 5 : cpuload
+```
+
 ## Next step
 
 Point your ingestion script at this Serial JSON stream (or ThingSpeak, if
