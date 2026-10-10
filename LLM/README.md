@@ -41,10 +41,15 @@ export ANTHROPIC_API_KEY=sk-ant-...
 export GEMINI_API_KEY=AIza...
 ```
 
+**Gemini** — get a key at https://github.com/tashfeenahmed/freellmapi:
+```bash
+export FREELLM_API_KEY=freellmapi-...
+```
+
 ## Running it
 
-Add `--provider gemini` to any command below to use Gemini instead of Claude
-(default is `claude`). Both expose the exact same output shape, so nothing
+Add `--provider gemini` or `--provider freellm` or `--provider claude` to any command below to use Gemini instead of Claude
+(default is `freellm`). All models expose the exact same output shape, so nothing
 else about the pipeline changes.
 
 **Against the real firmware**, once Wokwi is running and exposing a serial port
