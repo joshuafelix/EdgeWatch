@@ -29,6 +29,11 @@ That JSON stream is exactly what the ingestion/LLM pipeline (next step) will con
 pio run -t upload
 pio device monitor
 ```
+## Run it locally with PlatformIO after any code change for simulation
+
+```bash
+pio run
+```
 
 ## Tuning the simulation
 
