@@ -98,7 +98,7 @@ These show the LLM catching degradation early across the fleet.
 
 - Python 3.10+
 - [PlatformIO](https://platformio.org/) and the Wokwi VS Code extension (only for the live simulation)
-- A Gemini API key (or an Anthropic key if using Claude)
+- A Gemini API key or an Anthropic key if using Claude or an Freellmapi key
 
 ### Setup
 
@@ -116,6 +116,7 @@ Create a `.env` file in the project root:
 ```env
 GEMINI_API_KEY=your_key_here
 # ANTHROPIC_API_KEY=your_key_here   # if using Claude
+# FREELLM_API_KEY=your_key_here   # if using Freellmapi
 ```
 
 ### Run with the mock stream (no hardware or simulator)
