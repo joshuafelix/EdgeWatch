@@ -1,5 +1,18 @@
 # EdgeWatch
 
+<p align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=70A5FD&center=true&vCenter=true&width=750&lines=Jos+Felix" alt="Typing SVG" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=joshuafelix&color=70a5fd&style=flat-square&label=Profile+Views" alt="Profile Views"/>
+  <a href="mailto:jos.fx@outlook.com"><img src="https://img.shields.io/badge/Email-jos.fx%40outlook.com-70a5fd?style=flat-square&logo=microsoft-outlook&logoColor=white"/></a>
+  <a href="https://www.linkedin.com/in/joshuafelix19"><img src="https://img.shields.io/badge/LinkedIn-joshuafelix19-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
+  <a href="https://joshuafelix.netlify.app"><img src="https://img.shields.io/badge/Portfolio-joshuafelix.netlify.app-38BDAE?style=flat-square&logo=netlify&logoColor=white"/></a>
+</p>
+
 **IoT fleet monitoring with batched LLM anomaly detection.**
 
 EdgeWatch simulates a fleet of ESP32 edge nodes, streams their telemetry through a Python ingestion pipeline, and uses a single batched LLM call over the whole fleet to flag anomalies and predict failures. Instead of running inference per device, EdgeWatch acts as a centralized inference layer over distributed edge telemetry.
