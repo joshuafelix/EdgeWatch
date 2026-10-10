@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EdgeWatch — Fleet Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-box">EW</div>
+      <nav class="breadcrumb" id="breadcrumb">
+        <span>Operations</span>
+        <span class="crumb-sep">›</span>
+        <span id="crumb-current">Fleet overview</span>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <span class="stream-indicator">
+        <span class="stream-dot"></span>
+        TELEMETRY STREAM · <span id="clock">--:--:--</span> UTC
+      </span>
+      <button class="icon-btn" disabled title="No notification system wired up -- placeholder">
+        🔔<span class="icon-badge">2</span>
+      </button>
+      <div class="avatar" title="Demo session">EW</div>
+    </div>
+  </header>
+
+  <!-- ===== Fleet overview screen ===== -->
+  <main id="view-fleet" class="view">
+    <div class="eyebrow">01 <span class="eyebrow-dim">LIVE FLEET MONITOR</span></div>
+    <div class="title-row">
+      <h1><span class="title-strong">EdgeWatch</span> <span class="title-dim">/ Fleet overview</span></h1>
+      <div class="title-actions">
+        <button class="btn-outline" id="btn-refresh">↻ Refresh stream</button>
+        <button class="btn-outline" disabled title="Filtering isn't wired up in this build">☰ Filters</button>
+      </div>
+    </div>
+    <p class="subtitle">AI-assisted reliability telemetry for distributed compute.</p>
+
+    <section class="summary-panel">
+      <div class="summary-left">
+        <div class="summary-tag-row">
+          <span class="ai-tag">AI</span>
+          <span class="summary-label">FLEET SIGNAL SUMMARY</span>
+          <span class="summary-rule"></span>
+        </div>
+        <p class="summary-text" id="fleet-summary-text">Waiting for the first analysis cycle…</p>
+        <div class="summary-meta">
+          <span>∿ CONFIDENCE <span id="confidence-value">—</span></span>
+          <span>◔ SYNCED <span id="synced-value">—</span></span>
+        </div>
+      </div>
+      <div class="summary-right">
+        <div class="stat-block">
+          <p class="stat-label">ONLINE</p>
+          <p class="stat-value" id="stat-online">—<span class="stat-total">/6</span></p>
+          <div class="stat-bar"><div class="stat-bar-fill stat-bar-ok" id="bar-online"></div></div>
+        </div>
+        <div class="stat-block">
+          <p class="stat-label">ATTENTION</p>
+          <p class="stat-value stat-value-warn" id="stat-attention">—</p>
+          <div class="stat-bar"><div class="stat-bar-fill stat-bar-warn" id="bar-attention"></div></div>
+        </div>
+        <div class="stat-block">
+          <p class="stat-label">AVG RISK</p>
+          <p class="stat-value" id="stat-risk">—<span class="stat-total">/100</span></p>
+          <div class="stat-bar"><div class="stat-bar-fill stat-bar-ok" id="bar-risk"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-row">
+      <span class="section-label">NODE TELEMETRY</span>
+      <span class="section-label" id="node-count-label">6 TOTAL / — ONLINE</span>
+    </div>
+
+    <section class="node-grid" id="node-grid" aria-live="polite"></section>
+
+    <p class="empty-state" id="empty-state" hidden>
+      No telemetry yet. Start the ingestion pipeline (<code>python3 pipeline.py --source mock</code>) to see live nodes here.
+    </p>
+
+    <footer class="fleet-footer">
+      <span>• Persisted telemetry · last sync <span id="footer-sync">—</span></span>
+      <span>EdgeWatch v1.0 / dashboard build</span>
+    </footer>
+  </main>
+
+  <!-- ===== Node detail screen ===== -->
+  <main id="view-detail" class="view" hidden>
+    <button class="back-btn" id="btn-back">← Back to fleet overview</button>
+
+    <section class="detail-header-panel" id="detail-header-panel">
+      <div class="detail-header-glow"></div>
+      <div class="detail-header-top">
+        <div>
+          <p class="eyebrow" id="detail-eyebrow">02 <span class="eyebrow-dim">NODE DIAGNOSTICS</span> / NODE-00</p>
+          <div class="detail-title-row">
+            <span class="status-dot-lg" id="detail-dot"></span>
+            <h2 id="detail-title">Node</h2>
+            <span class="badge" id="detail-badge-inline"></span>
+          </div>
+          <p class="detail-subtitle" id="detail-subtitle">— / —</p>
+        </div>
+        <div class="detail-controls">
+          <button class="btn-outline btn-locked" disabled title="No device-control channel is wired up yet.">⏻ Turn off 🔒</button>
+          <button class="btn-outline btn-locked" disabled title="No device-control channel is wired up yet.">⏸ Pause 🔒</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-body">
+      <div class="readout-panel">
+        <div class="panel-header-row">
+          <span class="panel-label">TELEMETRY READOUT</span>
+          <span class="live-tag" id="readout-live-tag">• LIVE</span>
+        </div>
+        <h3 class="panel-title">Current values</h3>
+        <dl class="metric-list" id="detail-metrics"></dl>
+
+        <div class="risk-score-block">
+          <p class="panel-label">AI RISK SCORE</p>
+          <div class="risk-score-row">
+            <p class="risk-score-num"><span id="risk-score-value">—</span><span class="risk-score-total">/100</span></p>
+            <span class="risk-score-tag" id="risk-score-tag">Nominal</span>
+          </div>
+          <div class="risk-gradient-bar"><div class="risk-gradient-fill" id="risk-gradient-fill"></div></div>
+          <div class="risk-gradient-labels">
+            <span>LOW EXPOSURE</span><span>HIGH EXPOSURE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-panel">
+        <div class="panel-header-row">
+          <span class="summary-tag-row">
+            <span class="ai-tag">AI</span>
+            <span class="panel-label">ENGINEERING NOTE</span>
+          </span>
+          <span class="panel-label panel-label-dim">EDGEWATCH / TREND MODEL</span>
+        </div>
+        <h3 class="panel-title">What the model sees</h3>
+        <div class="note-box">
+          <span class="note-icon">⚡</span>
+          <p id="detail-reasoning">No analysis yet for this node.</p>
+        </div>
+
+        <div class="perf-header-row">
+          <div>
+            <p class="panel-label">NODE PERFORMANCE</p>
+            <p class="perf-title"><span id="perf-metric-name">—</span> <span class="perf-range-label" id="perf-range-label">/ last 60 sec</span></p>
+          </div>
+          <div class="range-toggle" id="range-toggle">
+            <button class="range-btn active" data-range="60s">60 sec</button>
+            <button class="range-btn" data-range="5m">5 min</button>
+            <button class="range-btn" data-range="1h">1 hr</button>
+          </div>
+        </div>
+        <svg id="detail-chart" viewBox="0 0 560 200" preserveAspectRatio="none"></svg>
+      </div>
+    </section>
+
+    <section class="action-panel" id="action-panel" hidden>
+      <span class="action-icon">⚠</span>
+      <div class="action-left">
+        <p class="panel-label">ACTION REQUIRED</p>
+        <p class="action-badge-text" id="action-badge-text">—</p>
+      </div>
+      <p class="action-desc" id="action-desc"></p>
+      <div class="action-lock">🔒 Control channel unavailable</div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

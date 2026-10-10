@@ -1,0 +1,55 @@
+{
+  "updated_at": "2026-09-25T08:08:11.970646+00:00",
+  "nodes": [
+    {
+      "node_id": "node-05",
+      "anomaly": true,
+      "risk_score": 92,
+      "trend": "degrading",
+      "predicted_failure_window": "10-15 min",
+      "reasoning": "Multiple degrading signals observed: temperature steadily rising from 25.1\u00b0C to 25.77\u00b0C, voltage declining from 4.114V to 3.923V, CPU load increasing from 26.4% to 31.7%, and vibration rising from 0.015g to 0.026g. The consistent 'degrading_temp' behavior confirms ongoing thermal stress."
+    },
+    {
+      "node_id": "node-06",
+      "anomaly": false,
+      "risk_score": 18,
+      "trend": "stable",
+      "predicted_failure_window": null,
+      "reasoning": "All metrics remain within normal ranges: stable temperature (23.47-24.09\u00b0C), stable voltage (4.075-4.104V), low CPU load (18.7-21.9%), and normal vibration levels. No signs of degradation detected."
+    },
+    {
+      "node_id": "node-01",
+      "anomaly": false,
+      "risk_score": 22,
+      "trend": "stable",
+      "predicted_failure_window": null,
+      "reasoning": "Consistently normal behavior across all metrics: stable temperature (23.82-24.35\u00b0C), stable voltage (4.098-4.132V), low CPU load (19.1-21.9%), and minimal vibration. No degradation patterns observed."
+    },
+    {
+      "node_id": "node-02",
+      "anomaly": false,
+      "risk_score": 25,
+      "trend": "stable",
+      "predicted_failure_window": null,
+      "reasoning": "All metrics show stable operation: temperature (23.56-24.27\u00b0C), voltage (4.032-4.049V), CPU load (20.9-24.4%), and vibration (0.01-0.029g). No concerning trends detected."
+    },
+    {
+      "node_id": "node-03",
+      "anomaly": true,
+      "risk_score": 88,
+      "trend": "degrading",
+      "predicted_failure_window": "5-10 min",
+      "reasoning": "Persistent 'degrading_voltage' behavior with voltage dropping sharply from 4.068V to 3.923V while temperature rises from 24.48\u00b0C to 25.77\u00b0C. CPU load and vibration are also increasing, indicating worsening electrical and thermal conditions."
+    },
+    {
+      "node_id": "node-04",
+      "anomaly": false,
+      "risk_score": 28,
+      "trend": "stable",
+      "predicted_failure_window": null,
+      "reasoning": "All metrics remain healthy: stable temperature (25.13-25.72\u00b0C), stable voltage (4.088-4.112V), low CPU load (17.9-21.1%), and minimal vibration. No degradation signals present."
+    }
+  ],
+  "fleet_summary": "Node-03 exhibits critical voltage degradation with temperature rising concurrently, posing the highest risk among all nodes. Node-05 shows progressive thermal and electrical degradation with elevated CPU load and vibration. Nodes 01, 02, and 04 are operating normally with stable metrics.",
+  "confidence": 92
+}

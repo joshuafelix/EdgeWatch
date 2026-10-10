@@ -1,0 +1,24 @@
+Mock Run:-
+python3 pipeline.py --source mock --dry-run
+
+Mock run with gemini:
+
+python pipeline.py --source mock --provider gemini --analysis-interval 10 --duration 60
+
+Run with wokwi & provider api:
+
+python3 pipeline.py --source wokwi --provider gemini --analysis-interval 30
+
+python3 pipeline.py --source wokwi --provider claude --analysis-interval 30
+
+python3 pipeline.py --source wokwi --provider freellm --analysis-interval 30
+
+**run with your api key**
+
+Api server run :-
+
+uvicorn api_server:app --reload --port 8000
+
+curl http://localhost:8000/api/latest
+
+localhost :- http://localhost:8000/api/latest
